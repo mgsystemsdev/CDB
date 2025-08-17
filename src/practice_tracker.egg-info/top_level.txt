@@ -1,0 +1,8 @@
+app
+core
+domain
+infrastructure
+interface_adapters
+ports
+shared
+usecases

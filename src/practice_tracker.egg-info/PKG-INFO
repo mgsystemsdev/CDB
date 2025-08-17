@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: practice-tracker
+Version: 0.1.0
+Summary: A desktop-first practice tracker that logs sessions, code history, and shows recruiter-ready progress dashboards.
+Author-email: Your Name <your@email.com>
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: pandas>=2.2.0
+Requires-Dist: numpy>=1.26.0
+Requires-Dist: pydantic>=2.6.0
+Requires-Dist: sqlalchemy>=2.0.25
+Requires-Dist: alembic>=1.13.1
+Requires-Dist: pyside6>=6.6.0
+Requires-Dist: supabase-py>=2.3.4
+Requires-Dist: streamlit>=1.31.0
+Requires-Dist: aiosqlite>=0.19.0
+
+# Practice Tracker
+
+A desktop-first practice tracking software that:
+
+- Logs coding sessions with tags, notes, and difficulty.
+- Stores data primarily in **pandas DataFrames** and **numpy arrays**, with SQLite for persistence/sync.
+- Ingests Git commit history and attributes it to sessions.
+- Tracks hours, points, streaks, and progress over time.
+- Publishes snapshots to Supabase for a recruiter-friendly public portfolio.
+- Renders read-only dashboards in Streamlit.
+
+## Tech Stack
+- **Python 3.11+**
+- **PySide6** for desktop UI
+- **Pandas + Numpy** for data tables and analytics
+- **SQLite + SQLAlchemy + Alembic** for storage
+- **Supabase** for cloud sync
+- **Streamlit** for recruiter-facing dashboards
+

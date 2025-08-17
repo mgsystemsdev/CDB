@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "practice-tracker"
+version = "0.1.0"
+description = "A desktop-first practice tracker that logs sessions, code history, and shows recruiter-ready progress dashboards."
+authors = [
+    { name="Your Name", email="your@email.com" }
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "pydantic>=2.6.0",
+    "sqlalchemy>=2.0.25",
+    "alembic>=1.13.1",
+    "pyside6>=6.6.0",
+    "supabase-py>=2.3.4",
+    "streamlit>=1.31.0",
+    "aiosqlite>=0.19.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+pythonpath = "src"
+addopts = "-ra -q"
