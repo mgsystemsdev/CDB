@@ -1,3 +1,9 @@
+# src/core/services/progress.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Implements pure functions to compute accumulated progress, clamp values, and round percentages.
+# Role: Core logic
+
 from __future__ import annotations
 
 from dataclasses import dataclass

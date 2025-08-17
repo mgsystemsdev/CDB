@@ -1,3 +1,9 @@
+# src/main_cli.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Command-line interface entrypoint. Connects repositories, use cases, and presenters, then outputs results in JSON format.
+# Role: Infrastructure/UI/Tests/Config
+
 from __future__ import annotations
 import argparse, asyncio
 from dataclasses import dataclass

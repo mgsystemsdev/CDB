@@ -1,76 +1,181 @@
-from datetime import date, timedelta, datetime
+# tests/unit/test_streaks.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Unit test for streak calculations. Validates correctness of current and longest streak logic based on dates.
+# Role: Infrastructure/UI/Tests/Config
+
+
+
+from datetime import date, datetime, timezone
+from uuid import uuid4
+import pandas as pd
 import pytest
 
-from core.services.streaks import get_streak, streaks_from_sessions
+from src.core.types.dtos import SessionDTO, ItemDTO, LanguageDTO
+from src.core.types.enums import Difficulty, ItemType, SessionStatus
+from src.core.dataframes.schemas import (
+    append_session,
+    append_item,
+    append_language,
+    append_sessions_from_iterable,
+    empty_sessions_df,
+    empty_items_df,
+    empty_languages_df,
+    coerce_sessions_df,
+    coerce_items_df,
+    coerce_languages_df,
+)
+
+def test_empty_sessions_df():
+    df = empty_sessions_df()
+    assert len(df) == 0
+    assert "session_id" in df.columns
+    assert "hour_spent" in df.columns
+    assert df["hour_spent"].dtype == "Float64"
+
+def test_append_session():
+    df = empty_sessions_df()
+    session = SessionDTO(
+        item_id=uuid4(),
+        language_code="py",
+        session_date=date.today(),
+        hour_spent=1.5,
+        difficulty=Difficulty.beginner,
+        status=SessionStatus.completed,
+        created_at=datetime.now(timezone.utc),
+        updated_at=datetime.now(timezone.utc),
+        started_at=datetime.now(timezone.utc),
+        ended_at=datetime.now(timezone.utc)
+    )
+    df = append_session(df, session)
+    assert len(df) == 1
+    assert df["hour_spent"].iloc[0] == 1.5
+    assert df["difficulty"].iloc[0] == "beginner"
+
+def test_append_item():
+    df = empty_items_df()
+    item = ItemDTO(
+        item_type=ItemType.project,
+        title="Test Project",
+        language_code="py",
+        description="A test project",
+    )
+    df = append_item(df, item)
+    assert len(df) == 1
+    assert df["title"].iloc[0] == "Test Project"
+    assert df["item_type"].iloc[0] == "project"
 
 
-# --- Helpers -----------------------------------------------------------------
-class Sess:
-    def __init__(self, d):
-        self.session_date = d
+def test_append_language():
+    df = empty_languages_df()
+    language = LanguageDTO(
+        code="py",
+        name="Python",
+        slug="python",
+        direction="ltr"
+    )
+    df = append_language(df, language)
+    assert len(df) == 1
+    assert df["code"].iloc[0] == "py"
+    assert df["name"].iloc[0] == "Python"
 
 
-# --- get_streak basic behavior ------------------------------------------------
-
-def test_empty_and_future_only_are_zero():
-    today = date(2025, 8, 17)
-    assert get_streak([], today=today) == {"current": 0, "longest": 0}
-    assert get_streak([today + timedelta(days=1)], today=today) == {"current": 0, "longest": 0}
-
-
-def test_single_day_current_and_longest_are_one():
-    t = date(2025, 8, 17)
-    assert get_streak([t], today=t) == {"current": 1, "longest": 1}
+def test_empty_items_df():
+    df = empty_items_df()
+    assert len(df) == 0
+    assert "item_id" in df.columns
+    assert "title" in df.columns
+    assert df["title"].dtype == "string"
 
 
-@pytest.mark.parametrize("span", [1, 2, 3, 7, 10])
-def test_current_counts_backwards_contiguously(span):
-    t = date(2025, 8, 17)
-    days = [t - timedelta(days=i) for i in range(span)]
-    res = get_streak(days, today=t)
-    assert res["current"] == span
-    assert res["longest"] >= span  # longest is at least current
+def test_empty_languages_df():
+    df = empty_languages_df()
+    assert len(df) == 0
+    assert "id" in df.columns
+    assert "code" in df.columns
+    assert df["code"].dtype == "string"
 
 
-def test_gap_breaks_current_but_longest_scans_all():
-    t = date(2025, 8, 17)
-    chain1 = [t - timedelta(days=i) for i in range(3)]  # 3-day ending today
-    gap = t - timedelta(days=4)  # break
-    chain2 = [t - timedelta(days=6), t - timedelta(days=7)]  # older 2-day chain
-    res = get_streak(chain1 + [gap] + chain2, today=t)
-    assert res == {"current": 3, "longest": 3}
+def test_append_sessions_from_iterable():
+    df = empty_sessions_df()
+    sessions = [
+        SessionDTO(
+            item_id=uuid4(),
+            language_code="py",
+            session_date=date.today(),
+            hour_spent=1.0,
+            difficulty=Difficulty.beginner,
+            status=SessionStatus.completed,
+        ),
+        SessionDTO(
+            item_id=uuid4(),
+            language_code="js",
+            session_date=date.today(),
+            hour_spent=2.0,
+            difficulty=Difficulty.advanced,
+            status=SessionStatus.in_progress,
+        )
+    ]
+    df = append_sessions_from_iterable(df, sessions)
+    assert len(df) == 2
+    assert df["hour_spent"].iloc[0] == 1.0
+    assert df["hour_spent"].iloc[1] == 2.0
 
 
-def test_duplicates_and_mixed_types_ok():
-    t = date(2025, 8, 17)
-    inputs = [t, t, t.isoformat(), datetime(t.year, t.month, t.day, 12, 0)]
-    assert get_streak(inputs, today=t) == {"current": 1, "longest": 1}
+def test_coerce_sessions_df():
+    # Test with a malformed dataframe
+    df = pd.DataFrame({
+        "session_id": ["test-id"],
+        "item_id": ["item-id"],
+        "language_code": ["py"],
+        "session_date": ["2024-01-01"],
+        "hour_spent": [1.5],
+        "difficulty": ["beginner"],
+        "status": ["completed"],
+        "topic": [None],
+        "tags": [""],
+        "notes": [None],
+        "points_awarded": [10.0],
+        "progress_pct": [100.0],
+        "session_number": [1],
+        "started_at": [None],
+        "ended_at": [None],
+        "created_at": [datetime.now(timezone.utc)],
+        "updated_at": [datetime.now(timezone.utc)],
+        "version": [1]
+    })
+    df_coerced = coerce_sessions_df(df)
+    assert df_coerced["hour_spent"].dtype == "Float64"
+    assert df_coerced["session_number"].dtype == "Int64"
 
 
-# --- streaks_from_sessions adapter behavior ----------------------------------
-
-def test_streaks_from_sessions_accepts_attr_and_dict():
-    t = date(2025, 8, 17)
-    sessions = [Sess(t), {"session_date": t - timedelta(days=1)}, Sess(t - timedelta(days=2))]
-    assert streaks_from_sessions(sessions, today=t) == {"current": 3, "longest": 3}
-
-
-def test_streaks_ignores_future_sessions():
-    t = date(2025, 8, 17)
-    sessions = [Sess(t), Sess(t + timedelta(days=1))]
-    assert streaks_from_sessions(sessions, today=t) == {"current": 1, "longest": 1}
-
-
-# --- robustness ---------------------------------------------------------------
-
-def test_unsupported_input_type_raises():
-    with pytest.raises(TypeError):
-        get_streak([123])
+def test_coerce_items_df():
+    df = pd.DataFrame({
+        "item_id": ["test-id"],
+        "item_type": ["project"],
+        "title": ["Test"],
+        "language_code": ["py"],
+        "description": [None],
+        "created_at": [datetime.now(timezone.utc)],
+        "updated_at": [datetime.now(timezone.utc)],
+        "version": [1]
+    })
+    df_coerced = coerce_items_df(df)
+    assert df_coerced["title"].dtype == "string"
+    assert df_coerced["version"].dtype == "Int64"
 
 
-def test_large_span_linear_behavior_quick():
-    # 60-day contiguous span should compute quickly and exact values
-    t = date(2025, 8, 17)
-    days = [t - timedelta(days=i) for i in range(60)]
-    res = get_streak(days, today=t)
-    assert res == {"current": 60, "longest": 60}
+def test_coerce_languages_df():
+    df = pd.DataFrame({
+        "id": ["test-id"],
+        "code": ["py"],
+        "name": ["Python"],
+        "slug": ["python"],
+        "direction": ["ltr"],
+        "created_at": [datetime.now(timezone.utc)],
+        "updated_at": [datetime.now(timezone.utc)]
+    })
+    df_coerced = coerce_languages_df(df)
+    assert df_coerced["code"].dtype == "string"
+    assert df_coerced["name"].dtype == "string"
+

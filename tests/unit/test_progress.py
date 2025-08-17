@@ -1,3 +1,9 @@
+# tests/unit/test_progress.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Unit test for progress accumulation logic. Ensures clamping and rounding of percentages behaves correctly.
+# Role: Infrastructure/UI/Tests/Config
+
 from dataclasses import dataclass
 import pytest
 from core.services.progress import (

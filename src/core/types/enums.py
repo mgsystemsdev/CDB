@@ -1,3 +1,9 @@
+# src/core/types/enums.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Defines enums for Difficulty and SessionStatus. Single source of truth for enumerated values.
+# Role: Core logic
+
 from enum import Enum
 
 

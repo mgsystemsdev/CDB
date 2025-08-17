@@ -1,3 +1,9 @@
+# tests/unit/test_enums.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Unit test validating Difficulty and SessionStatus enums. Ensures enum values remain stable and unchanged across versions.
+# Role: Infrastructure/UI/Tests/Config
+
 import pytest
 from src.core.types.enums import Difficulty, ItemType, SessionStatus, PublishStatus, Theme
 

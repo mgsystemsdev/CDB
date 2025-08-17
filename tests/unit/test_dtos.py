@@ -1,3 +1,9 @@
+# tests/unit/test_dtos.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Unit test verifying data transfer objects (DTOs). Enforces immutability and schema validation for shared data structures.
+# Role: Infrastructure/UI/Tests/Config
+
 from datetime import date
 from uuid import uuid4
 import pytest

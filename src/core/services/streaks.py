@@ -1,3 +1,9 @@
+# src/core/services/streaks.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Implements pure functions to determine current and longest streaks from date sequences.
+# Role: Core logic
+
 from __future__ import annotations
 
 from datetime import date, datetime, timedelta

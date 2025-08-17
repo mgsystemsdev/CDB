@@ -1,3 +1,9 @@
+# src/infrastructure/persistence/sqlite/database.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Defines open_db and DDL schema creation for SQLite database.
+# Role: Infrastructure/UI/Tests/Config
+
 from __future__ import annotations
 
 from pathlib import Path

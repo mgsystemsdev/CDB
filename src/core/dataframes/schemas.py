@@ -1,3 +1,9 @@
+# src/core/dataframes/schemas.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Defines canonical dataframe schemas for exporting and displaying tabular data.
+# Role: Core logic
+
 from __future__ import annotations
 
 from datetime import date, datetime, timezone

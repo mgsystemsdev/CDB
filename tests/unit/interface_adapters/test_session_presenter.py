@@ -1,3 +1,9 @@
+# tests/unit/interface_adapters/test_session_presenter.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Unit test for session presenter mapping. Verifies that saved session data maps to stable view-models for the UI.
+# Role: Infrastructure/UI/Tests/Config
+
 import asyncio
 from dataclasses import dataclass, replace
 from datetime import date, timedelta

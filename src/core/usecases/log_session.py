@@ -5,12 +5,12 @@ from dataclasses import replace
 from typing import Any, Iterable
 from uuid import UUID
 
-from src.core.services.points import compute_points
-from src.core.services.progress import accumulate_hours, compute_progress
-from src.core.services.streaks import streaks_from_sessions
-from src.core.types.dtos import SessionDTO
-from src.core.types.enums import Difficulty, SessionStatus
-from src.ports.repositories import ConfigRepository, ItemRepository, SessionRepository
+from core.services.points import compute_points
+from core.services.progress import accumulate_hours, compute_progress
+from core.services.streaks import streaks_from_sessions
+from core.types.dtos import SessionDTO
+from core.types.enums import Difficulty, SessionStatus
+from ports.repositories import ConfigRepository, ItemRepository, SessionRepository
 
 
 class LogSessionUseCase:

@@ -1,3 +1,9 @@
+# src/ports/repositories.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Defines protocols for repository interfaces, including sessions, items, and configuration.
+# Role: Infrastructure/UI/Tests/Config
+
 from __future__ import annotations
 
 from typing import Any, Iterable, Protocol

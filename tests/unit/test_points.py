@@ -1,3 +1,9 @@
+# tests/unit/test_points.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Unit test for core points calculation logic. Checks formulas involving hours × difficulty × status remain correct.
+# Role: Infrastructure/UI/Tests/Config
+
 import pytest
 from core.services.points import compute_points, DEFAULT_WEIGHTS
 from core.types.enums import Difficulty, SessionStatus

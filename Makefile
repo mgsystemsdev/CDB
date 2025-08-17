@@ -1,11 +1,6 @@
-PYTHON ?= python3
-ROOT := $(shell pwd)
+# Makefile
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Automation shortcuts for developers. Provides quality-of-life commands like `make run`, `make ui`, and `make test`.
+# Role: Infrastructure/UI/Tests/Config
 
-run:
-	PYTHONPATH="$(ROOT)" $(PYTHON) -m src.main_cli --hours $(HOURS)
-
-run-db:
-	PYTHONPATH="$(ROOT)" $(PYTHON) -m src.main_cli --db $(DB) --item-id $(ITEM) --target-hours 5 --hours $(HOURS)
-
-test:
-	PYTHONPATH="$(ROOT)" pytest -q

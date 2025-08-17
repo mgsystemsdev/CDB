@@ -1,3 +1,9 @@
+# tests/integration/test_sqlite_repos.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Integration test for SQLite repositories. Ensures end-to-end contract between use cases and persistence layer works.
+# Role: Infrastructure/UI/Tests/Config
+
 import pytest
 from dataclasses import dataclass
 from datetime import date

@@ -1,3 +1,9 @@
+# src/core/types/dtos.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Defines data transfer objects (DTOs) representing sessions, items, and reports.
+# Role: Core logic
+
 from __future__ import annotations
 
 from datetime import date, datetime, time, timezone

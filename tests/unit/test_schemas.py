@@ -1,3 +1,11 @@
+# tests/unit/test_schemas.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Unit test for dataframe schemas. Ensures tabular representations remain consistent over time.
+# Role: Infrastructure/UI/Tests/Config
+
+
+
 from datetime import date, datetime, timezone
 from uuid import uuid4
 import pandas as pd

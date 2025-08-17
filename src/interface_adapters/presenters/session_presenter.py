@@ -1,3 +1,9 @@
+# src/interface_adapters/presenters/session_presenter.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Maps session data into UI-friendly dictionary format with stable keys and types.
+# Role: Infrastructure/UI/Tests/Config
+
 from __future__ import annotations
 
 from datetime import date, datetime

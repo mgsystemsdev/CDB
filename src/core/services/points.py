@@ -1,3 +1,9 @@
+# src/core/services/points.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Implements pure functions for calculating points from sessions.
+# Role: Core logic
+
 from __future__ import annotations
 
 from typing import Dict

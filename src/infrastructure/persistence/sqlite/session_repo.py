@@ -1,3 +1,9 @@
+# src/infrastructure/persistence/sqlite/session_repo.py
+# Author: Miguel Gonzalez Almonte
+# Created: 2025-08-17
+# Description: Implements SessionRepository for SQLite backend.
+# Role: Infrastructure/UI/Tests/Config
+
 from __future__ import annotations
 
 from typing import Any, Iterable
