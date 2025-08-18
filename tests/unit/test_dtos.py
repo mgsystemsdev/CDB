@@ -8,7 +8,7 @@ from datetime import date
 from uuid import uuid4
 import pytest
 
-from src.core.types.dtos import (
+from core.types.dtos import (
     SessionDTO,
     ItemDTO,
     LanguageDTO,
@@ -16,7 +16,7 @@ from src.core.types.dtos import (
     SnapshotDTO,
     GamificationStateDTO,
 )
-from src.core.types.enums import Difficulty, ItemType, SessionStatus, Theme, PublishStatus
+from core.types.enums import Difficulty, ItemType, SessionStatus, Theme, PublishStatus
 
 
 def test_session_rounds_and_alias_hour_spent():

@@ -11,9 +11,9 @@ from uuid import uuid4
 import pandas as pd
 import pytest
 
-from src.core.types.dtos import SessionDTO, ItemDTO, LanguageDTO
-from src.core.types.enums import Difficulty, ItemType, SessionStatus
-from src.core.dataframes.schemas import (
+from core.types.dtos import SessionDTO, ItemDTO, LanguageDTO
+from core.types.enums import Difficulty, ItemType, SessionStatus
+from core.dataframes.schemas import (
     append_session,
     append_item,
     append_language,

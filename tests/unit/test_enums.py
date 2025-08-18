@@ -5,7 +5,7 @@
 # Role: Infrastructure/UI/Tests/Config
 
 import pytest
-from src.core.types.enums import Difficulty, ItemType, SessionStatus, PublishStatus, Theme
+from core.types.enums import Difficulty, ItemType, SessionStatus, PublishStatus, Theme
 
 def test_difficulty_has_four_levels():
     assert {d.value for d in Difficulty} == {"beginner", "intermediate", "advanced", "expert"}

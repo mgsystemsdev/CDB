@@ -11,7 +11,7 @@ from uuid import UUID
 
 import aiosqlite
 
-from src.ports.repositories import ItemRepository
+from ports.repositories import ItemRepository
 
 
 class SQLiteItemRepository(ItemRepository):

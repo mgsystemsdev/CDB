@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 from pandas import DatetimeTZDtype
 
-from src.core.types.dtos import ItemDTO, LanguageDTO, SessionDTO
+from core.types.dtos import ItemDTO, LanguageDTO, SessionDTO
 
 # ---------- Canonical schemas (column -> dtype) ----------
 

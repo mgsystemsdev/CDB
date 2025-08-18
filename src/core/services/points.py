@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from typing import Dict
 
-from src.core.types.enums import Difficulty, SessionStatus
+from core.types.enums import Difficulty, SessionStatus
 
 DEFAULT_WEIGHTS: Dict[Difficulty, float] = {
     Difficulty.beginner: 1.0,

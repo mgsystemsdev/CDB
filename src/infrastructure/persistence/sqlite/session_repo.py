@@ -11,7 +11,7 @@ from uuid import UUID
 
 import aiosqlite
 
-from src.ports.repositories import SessionRepository
+from ports.repositories import SessionRepository
 
 
 class SQLiteSessionRepository(SessionRepository):

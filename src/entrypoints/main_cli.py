@@ -1,20 +1,14 @@
-# src/main_cli.py
-# Author: Miguel Gonzalez Almonte
-# Created: 2025-08-17
-# Description: Command-line interface entrypoint. Connects repositories, use cases, and presenters, then outputs results in JSON format.
-# Role: Infrastructure/UI/Tests/Config
-
 from __future__ import annotations
 import argparse, asyncio
 from dataclasses import dataclass
 from datetime import date
 from uuid import uuid4
 
-from src.infrastructure.persistence.sqlite.database import open_db
-from src.infrastructure.persistence.sqlite.item_repo import SQLiteItemRepository
-from src.infrastructure.persistence.sqlite.session_repo import SQLiteSessionRepository
-from src.core.usecases.log_session import LogSessionUseCase
-from src.interface_adapters.presenters.session_presenter import SessionPresenter
+from infrastructure.persistence.sqlite.database import open_db
+from infrastructure.persistence.sqlite.item_repo import SQLiteItemRepository
+from infrastructure.persistence.sqlite.session_repo import SQLiteSessionRepository
+from core.usecases.log_session import LogSessionUseCase
+from interface_adapters.presenters.session_presenter import SessionPresenter
 
 @dataclass
 class Item:
@@ -85,3 +79,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+    print("Done!")

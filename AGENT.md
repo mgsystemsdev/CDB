@@ -58,11 +58,11 @@ python3 -m isort src/
 # Install dependencies first
 pip install -r requirements.txt
 
-# Run with proper Python path
-PYTHONPATH=src python3 -m main_cli --hours 1.5
+# Run with proper Python path (from workspace root)
+PYTHONPATH="$(pwd)/src" python3 -m entrypoints.main_cli --db smart.db --item-id demo --target-hours 5 --hours 2.0
 
-# Or alternatively
-cd src && python3 main_cli.py --hours 1.5
+# Or alternatively from src directory
+cd src && python3 entrypoints/main_cli.py --db ../smart.db --item-id demo --target-hours 5 --hours 2.0
 ```
 
 ## Code Quality Status
